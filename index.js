@@ -63,8 +63,7 @@ class Contenedor {
   deleteById = async (id) => {
     try {
       const allProducts = await this.read()
-      const deletedProduct = allProducts.splice(id-1, 1)
-      const newAllProducts = allProducts.filter(n => n !== deletedProduct)
+      const newAllProducts = allProducts.filter(product => product.id !== id)
 
       await fs.promises.writeFile(
         this.filename,
@@ -93,11 +92,11 @@ class Contenedor {
 
 const productos = new Contenedor("./products.json");
 
-// productos.save({
-//   title: "testing",
-//   price: 100,
-//   thumbnail: "http://http2.mlstatic.com/D_875724-MLA31116238699_062019-O.jpg",
-// });
+productos.save({
+  title: "testing",
+  price: 100,
+  thumbnail: "http://http2.mlstatic.com/D_875724-MLA31116238699_062019-O.jpg",
+});
 
 // productos.getById(6)
 
